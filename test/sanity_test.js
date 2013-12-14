@@ -82,6 +82,16 @@ describe("Morphues", function() {
     
     });
 
+    it("should be able to detect anonymous function declaration", function(){
+      var results = morphues.analyze(loadFixture("variable_declarations/anonymous_function_declaration"));
+
+      assert.equal(results.variables.length, 1); 
+      assert.equal(results.variables[0].name, "anonfn"); 
+      assert.equal(results.variables[0].type, "function"); 
+
+    });
+
+
    
   });
 

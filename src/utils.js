@@ -7,13 +7,22 @@ _.extend(exports, {
   },
 
   isArray: function(node) { 
-    return node.type == "ArrayExpression"
+    return node.type === "ArrayExpression"
+  },
+
+  isAnoymousFunction: function(node) {
+    return node.type === "FunctionExpression";
   },
 
   variableIdentificationsOf : function(node) {
 
     if(this.isLiteral(node)) {
       return { type: typeof(node.value) };
+    }
+
+
+    if(this.isAnoymousFunction(node)) {
+      return { type: "function" };
     }
 
     if(this.isArray(node)) {
