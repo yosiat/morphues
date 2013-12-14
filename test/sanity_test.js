@@ -10,7 +10,6 @@ function loadFixture(fixture_name) {
 
 describe("Morphues", function() {
 
-
   describe("Variable Declarations", function() {
 
     it("should be able to detect number declarations", function() {
@@ -42,18 +41,15 @@ describe("Morphues", function() {
 
 
     describe("Array Delcaration", function(){
-    
 
-    
       it("should be able to detect array declarations", function() {
         var results = morphues.analyze(loadFixture("variable_declarations/array_declaration"));
-        
 
         assert.equal(results.variables.length, 1); 
         assert.equal(results.variables[0].name, "items"); 
         assert.equal(results.variables[0].type, "array"); 
       });
- 
+
       it("should be able to detect the type of the array items", function() {
         var results = morphues.analyze(loadFixture("variable_declarations/array_declaration"));
 
@@ -77,9 +73,9 @@ describe("Morphues", function() {
         };
 
         assert.deepEqual(results, expectedResult);
-      }); 
-    
-    
+      });
+
+
     });
 
     it("should be able to detect anonymous function declaration", function(){
@@ -92,7 +88,6 @@ describe("Morphues", function() {
     });
 
 
-   
   });
 
 
