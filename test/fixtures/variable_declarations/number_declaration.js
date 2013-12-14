@@ -1,0 +1,1 @@
+var eliran = 42;
