@@ -3,7 +3,7 @@ var esprima = require("esprima"),
     _ = require("lodash");
 
 
-var Scope = require("./structures/scope").s;
+var Scope = require("./structures/scope");
 var M = require("./utils");
 
 
@@ -15,8 +15,9 @@ exports.analyze = function(sourceFile) {
   var globalScope = new Scope();
 
   walker(tree, {
-    VariableDeclarator: function() { 
-
+    VariableDeclarator: function() {
+        // get the identificatin for this variable declaration
+        // and add it as variable 
         var identification = M.variableIdentificationsOf(this.init);
         identification.name = this.id.name;
         globalScope.addVariable(identification);

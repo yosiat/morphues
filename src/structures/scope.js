@@ -1,14 +1,16 @@
 var _ = require("lodash");
 
-function Scope() {
+
+
+var Scope = module.exports = function Scope() {
   this.variables = [];
-}
+};
 
 _.extend(Scope.prototype, {
-  
+
   /*
    * Add variable to the current scope
-   */ 
+   */
   addVariable: function(metadata) {
     this.variables.push(metadata); 
   }
@@ -17,4 +19,3 @@ _.extend(Scope.prototype, {
 
 
 
-exports.s = Scope;
