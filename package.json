@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "build": "npm install"
   },
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
     "lodash": "~2.4.1",
-    "mocha": "~1.15.1",
     "esprima": "~1.0.4",
-    "escope": "~1.0.1",
     "walkes": "~0.1.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.15.1"
   }
 }
