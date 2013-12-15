@@ -87,6 +87,13 @@ describe("Morphues", function() {
 
     });
 
+    it("should be able to detect new instance declaration", function() {
+      var results = morphues.analyze(loadFixture("variable_declarations/instance_declaration"));
+
+      assert.equal(results.variables.length, 1); 
+      assert.equal(results.variables[0].name, "instanceVariable"); 
+      assert.equal(results.variables[0].type, "DummyInstance"); 
+    });
 
   });
 

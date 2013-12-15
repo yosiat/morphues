@@ -6,6 +6,10 @@ _.extend(exports, {
     return node.type === "Literal";
   },
 
+  isIdentifier : function(node) {
+    return node.type === "Identifier";
+  },
+
   isArray: function(node) {
     return node.type === "ArrayExpression";
   },
@@ -14,15 +18,22 @@ _.extend(exports, {
     return node.type === "FunctionExpression";
   },
 
+  isNewInstance: function(node) {
+    return node.type === "NewExpression";
+  },
+
   variableIdentificationsOf : function(node) {
 
     if(this.isLiteral(node)) {
       return { type: typeof(node.value) };
     }
 
-
     if(this.isAnoymousFunction(node)) {
       return { type: "function" };
+    }
+
+    if(this.isNewInstance(node) && this.isIdentifier(node.callee)) {
+      return { type: node.callee.name };
     }
 
     if(this.isArray(node)) {
@@ -44,6 +55,7 @@ _.extend(exports, {
     }
 
 
+    return {};
   }
 
 });
