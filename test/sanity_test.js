@@ -4,7 +4,7 @@ var assert = require("assert"),
 
 
 function loadFixture(fixture_name) {
-  return fs.readFileSync("test/fixtures/" + fixture_name + ".js");
+  return fs.readFileSync("test/fixtures/" + fixture_name + ".js").toString();
 }
 
 
