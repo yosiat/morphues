@@ -12,7 +12,7 @@ _.extend(Scope.prototype, {
    * Add variable to the current scope
    */
   addVariable: function(metadata) {
-    this.variables.push(metadata); 
+    this.variables.push(metadata);
   }
 
 });

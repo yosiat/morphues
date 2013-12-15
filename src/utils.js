@@ -2,12 +2,12 @@ var _ = require("lodash");
 
 _.extend(exports, {
 
-  isLiteral : function(node) { 
-     return node.type === "Literal"
+  isLiteral : function(node) {
+    return node.type === "Literal";
   },
 
-  isArray: function(node) { 
-    return node.type === "ArrayExpression"
+  isArray: function(node) {
+    return node.type === "ArrayExpression";
   },
 
   isAnoymousFunction: function(node) {
