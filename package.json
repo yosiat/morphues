@@ -1,8 +1,9 @@
 {
   "name": "morphues",
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "The type inference matrix guider!",
   "main": "index.js",
+  "repository": "git://github.com/yosy/morphues.git",
   "scripts": {
     "test": "mocha",
     "build": "npm install"
