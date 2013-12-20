@@ -22,7 +22,7 @@ _.extend(exports, {
     return node.type === "NewExpression";
   },
 
-   isObjectDeclration: function(node) {
+   isObjectDeclaration: function(node) {
     return node.type === "ObjectExpression";
   },
 
@@ -40,7 +40,7 @@ _.extend(exports, {
       return { type: node.callee.name };
     }
 
-    if(this.isObjectDeclration(node)) {
+    if(this.isObjectDeclaration(node)) {
       var self = this;
       var objectWithProperties = { 
         type: "object",
