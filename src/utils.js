@@ -22,6 +22,10 @@ _.extend(exports, {
     return node.type === "NewExpression";
   },
 
+   isObjectDeclaration: function(node) {
+    return node.type === "ObjectExpression";
+  },
+
   variableIdentificationsOf : function(node) {
 
     if(this.isLiteral(node)) {
@@ -34,6 +38,20 @@ _.extend(exports, {
 
     if(this.isNewInstance(node) && this.isIdentifier(node.callee)) {
       return { type: node.callee.name };
+    }
+
+    if(this.isObjectDeclaration(node)) {
+      var self = this;
+      var objectWithProperties = { 
+        type: "object",
+        properties: _.map(node.properties, function(property) {
+          var property_identifcation = self.variableIdentificationsOf(property.value);
+          property_identifcation.name = property.key.name;
+
+          return property_identifcation;
+        })
+      };
+      return objectWithProperties;
     }
 
     if(this.isArray(node)) {

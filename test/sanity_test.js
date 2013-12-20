@@ -95,6 +95,44 @@ describe("Morphues", function() {
       assert.equal(results.variables[0].type, "DummyInstance"); 
     });
 
+    describe("Object Delcaration", function(){
+
+      it("should be able to detect object declarations", function() {
+        var results = morphues.analyze(loadFixture("variable_declarations/object_declaration"));
+
+        assert.equal(results.variables.length, 1); 
+        assert.equal(results.variables[0].name, "obj"); 
+        assert.equal(results.variables[0].type, "object"); 
+      });
+
+      it("should be able to detect the type of the object properties", function() {
+        var results = morphues.analyze(loadFixture("variable_declarations/object_declaration"));
+
+        var expectedResult = {
+          variables: [
+            { 
+              name: "obj",
+              type: "object",
+              properties: [
+                {
+                  name: "n",
+                  type: "number"
+                },
+                {
+                  name: "b",
+                  type: "string"
+                }
+              ]
+            }
+          ]
+        };
+
+        assert.deepEqual(results, expectedResult);
+      });
+
+
+    });
+
   });
 
 
