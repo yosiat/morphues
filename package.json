@@ -13,7 +13,7 @@
   "dependencies": {
     "lodash": "~2.4.1",
     "esprima": "~1.0.4",
-    "walkes": "yosy/walkes"
+    "walkes": "0.2.0"
   },
   "devDependencies": {
     "mocha": "~1.15.1"
