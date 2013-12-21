@@ -4,13 +4,13 @@ var esprima = require("esprima"),
 
 
 var Scope = require("./structures/scope");
-var M = require("./utils");
-
+var metadataProvider = require("./structures/metadata_provider");
 
 
 function Morpheus() {
   this.globalScope = new Scope();
   this.tree = {};
+  this.metadataProvider = metadataProvider.getMetadataProvider();
 }
 
 
@@ -62,11 +62,11 @@ _.extend(Morpheus.prototype, {
      * Handles variable declarations, simple get infered values from the left side
      * declarations
      */
-    VariableDeclarator: function variableDeclarator(node, recurse, stop) {
-      var identification = M.variableIdentificationsOf(node.init);
-      identification.name = node.id.name;
+    VariableDeclarator: function variableDeclarator(node) {
+      var nodeMetadata = this.metadataProvider.provide(node.init);
+      nodeMetadata.name = node.id.name;
 
-      this.globalScope.addVariable(identification);
+      this.globalScope.addVariable(nodeMetadata);
     }
   }
 
