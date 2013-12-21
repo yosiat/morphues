@@ -10,8 +10,10 @@ Status](https://travis-ci.org/yosy/morphues.png)](https://travis-ci.org/yosy/mor
 
 1. Functions
   1. return types
-  2. parameter types - how can we do it?
-2. Math - BinaryExpresison
+  2. calling to functions - for example: "var k = returnNumber();"
+2. Add unique identifiers (pointers/addresses) like
+3. AssigmentExpression - extending an object
+4. Math - BinaryExpresison
 
 ## Contribute
 
