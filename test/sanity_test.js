@@ -15,8 +15,7 @@ describe("Variable Declarations", function() {
       ]
     };
 
-    assert.deepEqual(results, expectedResult);
-
+    assert.deepEqual(results.variables, expectedResult.variables);
   });
 
 
@@ -29,7 +28,7 @@ describe("Variable Declarations", function() {
       ]
     };
 
-    assert.deepEqual(results, expectedResult);
+    assert.deepEqual(results.variables, expectedResult.variables);
 
   });
 
@@ -66,7 +65,7 @@ describe("Variable Declarations", function() {
         ]
       };
 
-      assert.deepEqual(results, expectedResult);
+      assert.deepEqual(results.variables, expectedResult.variables);
     });
 
 
@@ -121,7 +120,7 @@ describe("Variable Declarations", function() {
         ]
       };
 
-      assert.deepEqual(results, expectedResult);
+      assert.deepEqual(results.variables, expectedResult.variables);
     });
 
 

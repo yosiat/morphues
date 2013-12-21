@@ -67,6 +67,14 @@ _.extend(Morpheus.prototype, {
       nodeMetadata.name = node.id.name;
 
       this.globalScope.addVariable(nodeMetadata);
+    },
+    /*
+     * Handles functions declarations
+     */
+    FunctionDeclaration: function functionDeclaration(node) {
+      var nodeMetadata = { name: node.id.name };
+
+      this.globalScope.addFunction(nodeMetadata);
     }
   }
 
