@@ -1,5 +1,6 @@
 var _ = require("lodash"),
    util = require("util"),
+   Scope = require("../scope"),
    Metadata = require("./metadata");
 
 /*
@@ -9,6 +10,7 @@ var _ = require("lodash"),
  */
 var FunctionMetadata = module.exports = function FunctionMetadata(node, provider) {
   this.parameters = [];
+  this.body = new Scope();
 
   Metadata.call(this, node, provider);
 };
@@ -26,6 +28,14 @@ _.extend(FunctionMetadata.prototype, {
     _.each(node.params, _.bind(function(parameter){
       this.parameters.push({ name: parameter.name });
     }, this));
+  },
+
+  /*
+   * Applies the scope body
+   * @param {Scope} body scope
+   */
+  applyBodyScope : function(scope) {
+    this.body = scope;
   }
 });
 

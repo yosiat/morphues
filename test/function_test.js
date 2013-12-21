@@ -24,4 +24,15 @@ describe("Functions", function(){
     assert.deepEqual(results.functions[0].parameters, expectedParameters);
   });
 
+
+  it("It should detect the body variables", function() {
+    var results = morphues.analyze(helper.loadFixture("functions/function_body_variables"));
+
+    var expectedVariables = [{ name: "str", type: "string" } , { name: "num", type: "number" }];
+
+    assert.ok(_.has(results.functions[0], "body"), "function should have body");
+    assert.ok(_.has(results.functions[0].body, "variables"), "function should have variables");
+    assert.deepEqual(results.functions[0].body.variables, expectedVariables);
+  });
+
 });

@@ -8,7 +8,7 @@ var metadataProvider = require("./structures/metadata_provider");
 
 
 function Morpheus() {
-  this.globalScope = new Scope();
+  this.currentScope = new Scope();
   this.tree = {};
   this.metadataProvider = metadataProvider.getMetadataProvider();
 }
@@ -30,7 +30,7 @@ _.extend(Morpheus.prototype, {
     this.tree = esprima.parse(sourceFile);
     this._walkTree();
 
-    return this.globalScope;
+    return this.currentScope;
   },
 
   /*
@@ -70,14 +70,25 @@ _.extend(Morpheus.prototype, {
      */
     VariableDeclarator: function variableDeclarator(node) {
       var nodeMetadata = this.getNodeMetadata(node.init, node.id);
-      this.globalScope.addVariable(nodeMetadata);
+      this.currentScope.addVariable(nodeMetadata);
     },
     /*
      * Handles functions declarations
      */
-    FunctionDeclaration: function functionDeclaration(node) {
+    FunctionDeclaration: function functionDeclaration(node, recurse) {
       var nodeMetadata = this.getNodeMetadata(node, node.id);
-      this.globalScope.addFunction(nodeMetadata);
+
+      // Change the scope of the function, and save the old one
+      var oldScope = this.currentScope;
+      this.currentScope = new Scope();
+
+      recurse(node.body);
+
+      // Apply the new scope and change the scope to the old one
+      nodeMetadata.applyBodyScope(this.currentScope);
+      this.currentScope = oldScope;
+
+      this.currentScope.addFunction(nodeMetadata);
     }
   }
 
