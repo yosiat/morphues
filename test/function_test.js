@@ -15,5 +15,13 @@ describe("Functions", function(){
   });
 
 
+  it("It should detect function parameters", function() {
+    var results = morphues.analyze(helper.loadFixture("functions/function_arguments"));
+
+    var expectedParameters = [{ name: "parameter1" } , { name: "parameter2" }];
+
+    assert.ok(_.has(results.functions[0], "parameters"), "function should have parameters");
+    assert.deepEqual(results.functions[0].parameters, expectedParameters);
+  });
 
 });

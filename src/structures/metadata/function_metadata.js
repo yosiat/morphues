@@ -8,6 +8,8 @@ var _ = require("lodash"),
  * @base {Metadata}
  */
 var FunctionMetadata = module.exports = function FunctionMetadata(node, provider) {
+  this.parameters = [];
+
   Metadata.call(this, node, provider);
 };
 
@@ -18,8 +20,12 @@ _.extend(FunctionMetadata.prototype, {
    * Get the types of the primitive from the node value
    * @params {Node} esprima node
    */
-  initialize : function() {
+  initialize : function(node) {
     this.type = "function";
+
+    _.each(node.params, _.bind(function(parameter){
+      this.parameters.push({ name: parameter.name });
+    }, this));
   }
 });
 

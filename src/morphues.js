@@ -53,6 +53,12 @@ _.extend(Morpheus.prototype, {
     return visitors;
   },
 
+  getNodeMetadata : function(node, nodeIdentifier) {
+    var nodeMetadata = this.metadataProvider.provide(node);
+    nodeMetadata.name = nodeIdentifier.name;
+
+    return nodeMetadata;
+  },
   /*
    * The AST visitors, each visitor be walk others ast node types of the tree,
    * their 'this' scope, will be Morpheus, please see Morpheus.prototype._walkTree
@@ -63,17 +69,14 @@ _.extend(Morpheus.prototype, {
      * declarations
      */
     VariableDeclarator: function variableDeclarator(node) {
-      var nodeMetadata = this.metadataProvider.provide(node.init);
-      nodeMetadata.name = node.id.name;
-
+      var nodeMetadata = this.getNodeMetadata(node.init, node.id);
       this.globalScope.addVariable(nodeMetadata);
     },
     /*
      * Handles functions declarations
      */
     FunctionDeclaration: function functionDeclaration(node) {
-      var nodeMetadata = { name: node.id.name };
-
+      var nodeMetadata = this.getNodeMetadata(node, node.id);
       this.globalScope.addFunction(nodeMetadata);
     }
   }
