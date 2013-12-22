@@ -35,4 +35,13 @@ describe("Functions", function(){
     assert.deepEqual(results.functions[0].body.variables, expectedVariables);
   });
 
+
+  it("It should detect the return type for identifier return value", function() {
+    var results = morphues.analyze(helper.loadFixture("functions/primitive_return_value"));
+
+
+    assert.ok(_.has(results.functions[0], "returnType"), "function should have returnType");
+    assert.equal(results.functions[0].returnType, "number");
+  });
+
 });
