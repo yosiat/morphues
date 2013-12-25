@@ -32,6 +32,18 @@ describe("Variable Declarations", function() {
 
   });
 
+ it("should be able to detect multiple declaration of the same Variable", function() {
+    var results = morphues.analyze(helper.loadFixture("variable_declarations/multiple_declaration"));
+
+    var expectedResult = {
+      variables: [
+        { name: "eliran", type: "number" }
+      ]
+    };
+
+    assert.deepEqual(results.variables, expectedResult.variables);
+  });
+
 
   describe("Array Delcaration", function(){
 

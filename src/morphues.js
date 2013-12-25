@@ -70,7 +70,7 @@ _.extend(Morpheus.prototype, {
      */
     VariableDeclarator: function variableDeclarator(node) {
       var nodeMetadata = this.getNodeMetadata(node.init, node.id);
-      this.currentScope.addVariable(nodeMetadata);
+      this.currentScope.addOrUpdateVariable(nodeMetadata);
     },
     /*
      * Handles functions declarations

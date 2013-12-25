@@ -21,9 +21,15 @@ _.extend(Scope.prototype, {
    * Add variable to the current scope
    * @param {Metadata} metadata about the variable
    */
-  addVariable: function(metadata) {
+  addOrUpdateVariable: function(metadata) {
+    var index = this._variableIndex[metadata.name]
+    if( index != undefined){
+      this.variables[index] = metadata;
+    } 
+    else {
     var returnIndex = this.variables.push(metadata);
     this._variableIndex[metadata.name] = returnIndex - 1;
+    }
   },
 
   /*
