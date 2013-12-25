@@ -89,6 +89,14 @@ _.extend(Morpheus.prototype, {
       this.currentScope = oldScope;
 
       this.currentScope.addFunction(nodeMetadata);
+    } ,
+
+    /*
+     * Handles AssignmnetExpression 
+    */
+    AssignmentExpression: function AssignmentExpression(node){
+     var nodeMetadata = this.getNodeMetadata(node.right, node.left);
+     this.currentScope.addOrUpdateVariable(nodeMetadata);
     }
   }
 
