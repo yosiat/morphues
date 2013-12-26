@@ -42,6 +42,6 @@ module.exports.getMetadataProvider = function() {
   metadataProvider.registerMetadata("FunctionExpression", require("./metadata/function_metadata"));
   metadataProvider.registerMetadata("FunctionDeclaration", require("./metadata/function_metadata"));
   metadataProvider.registerMetadata("NewExpression", require("./metadata/instance_metadata"));
-
+ 
   return metadataProvider;
 };

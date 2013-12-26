@@ -95,7 +95,12 @@ _.extend(Morpheus.prototype, {
      * Handles AssignmnetExpression 
     */
     AssignmentExpression: function AssignmentExpression(node){
-     var nodeMetadata = this.getNodeMetadata(node.right, node.left);
+      var nodeIdentifier = node.left;
+      if(nodeIdentifier.type === "MemberExpression"){
+          nodeIdentifier = node.left.object;
+          nodeIdentifier.name = nodeIdentifier.name + "." + node.left.property.name;
+      }
+     var nodeMetadata = this.getNodeMetadata(node.right, nodeIdentifier);
      this.currentScope.addOrUpdateVariable(nodeMetadata);
     }
   }
