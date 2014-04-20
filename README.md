@@ -3,7 +3,7 @@ The type inference matrix guider!
 
 
 [![Build
-Status](https://travis-ci.org/yosy/morphues.png)](https://travis-ci.org/yosy/morphues)
+Status](https://travis-ci.org/yosiat/morphues.png)](https://travis-ci.org/yosiat/morphues)
 
 
 ## TODO
