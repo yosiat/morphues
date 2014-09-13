@@ -70,7 +70,7 @@ _.extend(Morpheus.prototype, {
      */
     VariableDeclarator: function variableDeclarator(node) {
       var nodeMetadata = this.getNodeMetadata(node.init, node.id);
-      this.currentScope.addVariable(nodeMetadata);
+      this.currentScope.addOrUpdateVariable(nodeMetadata);
     },
     /*
      * Handles functions declarations
@@ -89,6 +89,19 @@ _.extend(Morpheus.prototype, {
       this.currentScope = oldScope;
 
       this.currentScope.addFunction(nodeMetadata);
+    } ,
+
+    /*
+     * Handles AssignmnetExpression 
+    */
+    AssignmentExpression: function AssignmentExpression(node){
+      var nodeIdentifier = node.left;
+      if(nodeIdentifier.type === "MemberExpression"){
+          nodeIdentifier = node.left.object;
+          nodeIdentifier.name = nodeIdentifier.name + "." + node.left.property.name;
+      }
+     var nodeMetadata = this.getNodeMetadata(node.right, nodeIdentifier);
+     this.currentScope.addOrUpdateVariable(nodeMetadata);
     }
   }
 
