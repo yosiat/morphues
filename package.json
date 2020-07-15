@@ -11,7 +11,7 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "lodash": "~2.4.1",
+    "lodash": "~4.17.19",
     "esprima": "~1.0.4",
     "walkes": "0.2.0"
   },
